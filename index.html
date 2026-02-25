@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <title>Conor Ashlee-Purle</title>
+    <meta name="description" content="Portfolio of Conor Ashlee-Purle. Explore projects, commissions, and family archive work.">
+    <link rel="canonical" href="https://conorashlee.com/index.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Conor Ashlee-Purle">
+    <meta property="og:description" content="Portfolio of Conor Ashlee-Purle. Explore projects, commissions, and family archive work.">
+    <meta property="og:image" content="https://conorashlee.com/data/navicon/navicon.png">
+    <meta property="og:url" content="https://conorashlee.com/index.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Conor Ashlee-Purle">
+    <meta name="twitter:description" content="Portfolio of Conor Ashlee-Purle. Explore projects, commissions, and family archive work.">
+    <meta name="twitter:image" content="https://conorashlee.com/data/navicon/navicon.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data/navicon/navicon.png" type="image/png">
+</head>
+<body class="is-home">
+    <!-- Mobile Gate Overlay -->
+    <div id="device-check-overlay" class="hidden">
+        <img id="gate-phone-img" src="data/assets/phone/phone.webp" alt="Phone">
+    </div>
+
+    <!-- Top-left actions -->
+    <div class="top-left-actions">
+        <div id="about-btn" class="about-btn interactive">
+            <img src="data/assets/titles/conor.webp" alt="About" class="fade-on-load">
+        </div>
+        <img src="data/assets/buttons/home.webp" alt="Home" class="btn-home interactive interactive--lg fade-on-load">
+    </div>
+
+    <!-- Main Menu (centered) -->
+    <div id="main-menu" class="centered-container">
+        <div class="menu-section">
+            <div class="menu-buttons" id="projects-buttons"></div>
+        </div>
+        
+        <div class="menu-section" id="commissions-link">
+            <div class="menu-title interactive">
+                <img src="data/assets/titles/commission.webp" alt="Commissions" class="fade-on-load">
+            </div>
+        </div>
+
+        <div class="menu-section" id="family-archive-link">
+            <div class="menu-title interactive">
+                <img src="data/assets/titles/familyArchive.webp" alt="Family Archive" class="fade-on-load">
+            </div>
+        </div>
+    </div>
+
+    <!-- Password Screen -->
+    <div id="password-screen" class="hidden">
+        <div class="password-container">
+            <img src="data/assets/password/password.webp" alt="Password" class="password-title fade-on-load">
+            <input type="password" id="password-input" class="password-input">
+            <div class="password-feedback">
+                <img id="password-feedback-img" src="" alt="" class="hidden">
+            </div>
+            <div class="password-buttons">
+                <img src="data/assets/buttons/back.webp" alt="Back" class="btn-back interactive fade-on-load">
+            </div>
+        </div>
+    </div>
+
+    <script src="gate.js"></script>
+    <script src="noise.js"></script>
+    <script src="loader.js"></script>
+    <script src="home.js"></script>
+</body>
+</html>

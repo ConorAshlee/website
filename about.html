@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <title>Conor Ashlee-Purle</title>
+    <meta name="description" content="About and contact details for Conor Ashlee-Purle, including email, phone, and Instagram.">
+    <link rel="canonical" href="https://conorashlee.com/about.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Conor Ashlee-Purle">
+    <meta property="og:description" content="About and contact details for Conor Ashlee-Purle, including email, phone, and Instagram.">
+    <meta property="og:image" content="https://conorashlee.com/data/navicon/navicon.png">
+    <meta property="og:url" content="https://conorashlee.com/about.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Conor Ashlee-Purle">
+    <meta name="twitter:description" content="About and contact details for Conor Ashlee-Purle, including email, phone, and Instagram.">
+    <meta name="twitter:image" content="https://conorashlee.com/data/navicon/navicon.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data/navicon/navicon.png" type="image/png">
+</head>
+<body>
+    <!-- Mobile Gate Overlay -->
+    <div id="device-check-overlay" class="hidden">
+        <img id="gate-phone-img" src="data/assets/phone/phone.webp" alt="Phone">
+    </div>
+
+    <!-- About Screen -->
+    <div class="top-left-actions">
+        <img src="data/assets/buttons/home.webp" alt="Home" class="btn-home interactive interactive--lg fade-on-load">
+        <a href="#" class="interactive interactive--lg" id="instagram-link" aria-label="Instagram">
+            <img src="data/assets/buttons/ig.webp" alt="Instagram" class="ig-btn fade-on-load">
+        </a>
+    </div>
+    <div id="about-screen">
+        <div class="about-container">
+            <img src="data/bio/bio.webp" alt="Bio" class="bio-image fade-on-load">
+
+            <!-- CV images -->
+            <div class="cv-images" id="cv-images"></div>
+
+            <div class="about-sections">
+                <div class="about-section">
+                    <a href="#" class="about-action interactive" id="email-link" aria-label="Email">
+                        <img src="data/assets/titles/email.webp" alt="Email" class="section-title fade-on-load">
+                    </a>
+                </div>
+                <div class="about-section">
+                    <button type="button" class="about-action interactive" id="phone-copy" aria-label="Copy phone number">
+                        <img src="data/assets/titles/phoneNumber.webp" alt="Phone" class="section-title fade-on-load">
+                    </button>
+                </div>
+            </div>
+
+            <a href="https://meowrhino.studio" target="_blank" rel="noopener noreferrer" aria-label="Visit Meowrhino Studio">
+                <img src="data/assets/buttons/meowrhino.webp" alt="Meowrhino" class="meowrhino fade-on-load">
+            </a>
+        </div>
+
+        <!-- Bio images (like project info, bottom right) -->
+        <div class="bio-images-container">
+            <div class="bio-images" id="bio-images"></div>
+        </div>
+    </div>
+
+    <script src="gate.js"></script>
+    <script src="noise.js"></script>
+    <script src="loader.js"></script>
+    <script src="about.js"></script>
+</body>
+</html>

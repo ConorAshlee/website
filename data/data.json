@@ -1,0 +1,139 @@
+{
+  "contact": {
+    "email": "cashlee.purle@gmail.com",
+    "phone": "+44 (0) 747 5121424",
+    "instagram": "conor_ashlee",
+    "imageCount": 8
+  },
+  "about": {
+    "mainBioImage": "data/bio/bio.webp",
+    "cvImages": [
+      "data/bio/cv/1.webp"
+    ],
+    "bioGalleryBasePath": "data/bio/me",
+    "bioImageCount": 8
+  },
+  "projects": [
+    {
+      "slug": "allEars",
+      "title": "i am all ears",
+      "imageCount": 27,
+      "password": null
+    },
+    {
+      "slug": "belladona",
+      "title": "belladona",
+      "imageCount": 173,
+      "extraCount": 18,
+      "password": null
+    },
+    {
+      "slug": "buttercup",
+      "title": "pucker up butter cup",
+      "imageCount": 228,
+      "password": "bloom"
+    }
+  ],
+  "commissions": [
+    {
+      "slug": "kate",
+      "title": "Kate",
+      "imageCount": 4
+    },
+    {
+      "slug": "r1",
+      "title": "R1",
+      "imageCount": 3
+    },
+    {
+      "slug": "shainy",
+      "title": "Shainy",
+      "imageCount": 4
+    }
+  ],
+  "familyArchive": {
+    "basePath": "ashlee",
+    "albums": [
+      {
+        "slug": "1987_rhodes",
+        "title": "1987 Rhodes",
+        "imageCount": 58
+      },
+      {
+        "slug": "1989",
+        "title": "1989",
+        "imageCount": 44
+      },
+      {
+        "slug": "1990",
+        "title": "1990",
+        "imageCount": 47
+      },
+      {
+        "slug": "1993_4",
+        "title": "1993-4",
+        "imageCount": 53
+      },
+      {
+        "slug": "1993_wed",
+        "title": "1993 Wedding",
+        "imageCount": 64
+      },
+      {
+        "slug": "1994",
+        "title": "1994",
+        "imageCount": 60
+      },
+      {
+        "slug": "1994-95",
+        "title": "1994-95",
+        "imageCount": 25
+      },
+      {
+        "slug": "1999_connor",
+        "title": "1999 Connor",
+        "imageCount": 72
+      },
+      {
+        "slug": "2001",
+        "title": "2001",
+        "imageCount": 129
+      },
+      {
+        "slug": "2002-2003",
+        "title": "2002-2003",
+        "imageCount": 144
+      },
+      {
+        "slug": "2003-2004_turkey",
+        "title": "2003-2004 Turkey",
+        "imageCount": 150
+      },
+      {
+        "slug": "aged_8",
+        "title": "Aged 8",
+        "imageCount": 170
+      },
+      {
+        "slug": "conor_3",
+        "title": "Conor 3",
+        "imageCount": 56
+      },
+      {
+        "slug": "house",
+        "title": "House",
+        "imageCount": 22
+      },
+      {
+        "slug": "lewis",
+        "title": "Lewis",
+        "imageCount": 43
+      },
+      {
+        "slug": "misc",
+        "title": "Misc",
+        "imageCount": 34
+      }
+    ]
+  }
+}

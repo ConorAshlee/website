@@ -1,0 +1,694 @@
+/* ==========================================================================
+   style.css — Global styles for Conor Ashlee-Purle portfolio
+
+   Architecture:
+   - Multi-page site: index.html, project.html, about.html, commission.html,
+     extra.html, familyArchive.html
+   - All interactive elements use .interactive class (opacity 0.85 → 1 on hover)
+   - Gallery images have their own opacity rules (0.85 → 1, no scale)
+   - Background: blackGlitch.webp + noise overlay (injected by noise.js)
+
+   Z-index layers:
+     10     .centered-container (main menu)
+     50     .section-screen (family archive)
+    100     .top-left-actions (home/about buttons)
+    100     .preloader
+   1000     .lightbox
+   1001     .lightbox-nav, .lightbox-close
+  10000     #device-check-overlay (mobile gate — topmost)
+   ========================================================================== */
+
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Prevent overscroll bounce (white flash at scroll edges on macOS/Chrome) */
+html {
+    overscroll-behavior: none;
+}
+
+body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    overflow-x: hidden;
+    position: relative;
+    min-height: 100vh;
+
+    /* Image background with noise overlay — noise.js prepends a noise tile layer at runtime */
+    background-color: #000;
+    background-image: url('data/background/blackGlitch.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* Fixed background for desktop parallax; mobile is gated by the device overlay. */
+    background-attachment: fixed;
+}
+
+/* ---------- Mobile Gate ---------- */
+
+#device-check-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    background-image: url('data/background/blackGlitch.webp');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+}
+
+#device-check-overlay.hidden {
+    display: none;
+}
+
+#gate-phone-img {
+    max-width: 60%;
+    max-height: 60%;
+    object-fit: contain;
+    opacity: 0.85;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+#gate-phone-img:hover {
+    opacity: 1;
+}
+
+/* Expanded state — image fills most of the screen */
+#device-check-overlay.gate-expanded {
+    background: rgba(0, 0, 0, 0.95);
+}
+
+#device-check-overlay.gate-expanded #gate-phone-img {
+    max-width: 90%;
+    max-height: 90%;
+    opacity: 1;
+    cursor: default;
+}
+
+/* ---------- Utility classes ---------- */
+
+.hidden {
+    display: none !important;
+}
+
+/*
+ * .interactive — Shared hover behavior for all clickable elements.
+ * Base: opacity 0.85, hover: opacity 1 + slight scale.
+ * Modifier: .interactive--lg gives a larger scale (1.1) for utility buttons.
+ */
+.interactive {
+    opacity: 0.85;
+    cursor: pointer;
+    transition: transform 0.2s, opacity 0.3s ease;
+}
+
+.interactive:hover {
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+.interactive--lg:hover {
+    transform: scale(1.1);
+}
+
+/* ---------- Top-left actions (home + about buttons) ---------- */
+
+.top-left-actions {
+    position: fixed;
+    top: 2rem;
+    left: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: flex-start;
+    z-index: 100;
+}
+
+/* Hide the home button on the home page itself */
+body.is-home .top-left-actions .btn-home {
+    display: none;
+}
+
+/* Home button in top-left-actions (about, familyArchive, password) */
+.top-left-actions .btn-home {
+    max-width: 100px;
+}
+
+.about-btn img {
+    max-width: 180px;
+    height: auto;
+}
+
+/* ---------- Main menu (centered) ---------- */
+
+.centered-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    align-items: center;
+    z-index: 10;
+    padding: 20dvh 2rem;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.menu-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+}
+
+.menu-title img {
+    max-height: 84px;
+    height: auto;
+    display: block;
+}
+
+.menu-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.1rem;
+    justify-content: center;
+    max-width: 900px;
+}
+
+/* Projects stack vertically in the main menu */
+#main-menu .menu-buttons {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.menu-buttons img {
+    max-height: 80px;
+    height: auto;
+}
+
+/* ---------- Section screens (family archive) ---------- */
+
+.section-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 50;
+}
+
+/* ---------- Album links (family archive) ---------- */
+
+.album-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 1.5rem;
+    align-items: center;
+    justify-content: center;
+    max-width: 900px;
+}
+
+.album-links img {
+    max-height: 50px;
+    height: auto;
+}
+
+/* ---------- Password screen ---------- */
+
+#password-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 50;
+    background: transparent;
+}
+
+.password-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.password-title {
+    max-width: 300px;
+}
+
+.password-input {
+    padding: 1rem 2rem;
+    font-size: 1.5rem;
+    border: 3px solid #444cf7;
+    background: #fff;
+    text-align: center;
+    min-width: 300px;
+    font-family: inherit;
+}
+
+.password-feedback img {
+    max-width: 320px;
+    height: auto;
+}
+
+.password-buttons img {
+    max-width: 100px;
+}
+
+/* ---------- Preloader (progress bar while images load) ---------- */
+
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    background: rgba(229, 229, 247, 0.95);
+}
+
+#loader-bar {
+    width: 0%;
+    height: 4px;
+    background: #444cf7;
+    /* Width is updated by loader.js while assets load. */
+    transition: width 0.3s ease;
+    max-width: 400px;
+}
+
+/* ---------- Gallery ---------- */
+
+#gallery {
+    width: 100%;
+    min-height: 100vh;
+    padding: 2rem;
+    padding-bottom: 4rem;
+}
+
+/* Masonry layout — columns created dynamically by project.js */
+.gallery-grid {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.masonry-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.gallery-item {
+    position: relative;
+    cursor: pointer;
+}
+
+/* Gallery images: same 0.85 opacity as everything, hover to 1, no scale */
+.gallery-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    opacity: 0.85;
+    transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover img {
+    opacity: 1;
+}
+
+/* Progressive loading: images start invisible and fade in when loaded */
+.gallery-item--loading img {
+    /* JS applies this while the image is still downloading. */
+    opacity: 0;
+}
+
+.gallery-item--loaded img {
+    /* JS swaps to this after decode to avoid popping. */
+    opacity: 0.85;
+}
+
+/* ---------- Gallery bottom bar (nav left, info/extra right) ---------- */
+
+.gallery-bottom-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 5rem;
+    padding: 0 0 2rem;
+}
+
+.gallery-bottom-left {
+    display: flex;
+    align-items: flex-end;
+}
+
+.gallery-bottom-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1rem;
+}
+
+.btn-nav {
+    max-width: 100px;
+}
+
+.btn-extra {
+    max-width: 80px;
+}
+
+.project-info-image {
+    max-width: 360px;
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ---------- Lightbox (full-screen image viewer) ---------- */
+
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#lightbox-image {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    opacity: 1;
+}
+
+#bio-lightbox-image {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+}
+
+.lightbox-nav {
+    position: fixed;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    z-index: 1001;
+    /* Let clicks pass through except on actual buttons. */
+    pointer-events: none;
+}
+
+.lightbox-btn {
+    max-width: 100px;
+    pointer-events: auto;
+}
+
+/* Keep arrow slot in layout when hidden so right arrow stays on the right side. */
+.lightbox-btn--hidden {
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* Override inline opacity set by JS at first/last image boundaries */
+.lightbox-btn:hover {
+    opacity: 1 !important;
+}
+
+.lightbox-close {
+    position: fixed;
+    top: 2rem;
+    left: 2rem;
+    z-index: 1001;
+    max-width: 80px;
+}
+
+/* ---------- About screen ---------- */
+
+#about-screen {
+    width: 100%;
+    min-height: 100vh;
+    padding: 2rem;
+    padding-bottom: 4rem;
+}
+
+.about-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    padding-top: 4rem;
+}
+
+.bio-image {
+    max-width: 500px;
+    width: 100%;
+    height: auto;
+}
+
+.cv-images {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+    max-width: 500px;
+}
+
+.cv-image {
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+    opacity: 0.85;
+    transition: opacity 0.3s ease;
+}
+
+.cv-image:hover {
+    opacity: 1;
+}
+
+.about-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.about-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.about-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: none;
+    background: none;
+    text-decoration: none;
+}
+
+.section-title {
+    max-height: 50px;
+    max-width: 200px;
+    width: auto;
+    height: auto;
+}
+
+.ig-btn {
+    max-width: 100px;
+    height: auto;
+}
+
+.meowrhino {
+    max-width: 300px;
+    width: 100%;
+    height: auto;
+    margin-top: 8rem;
+    opacity: 0.85;
+}
+
+/* ---------- Extra horizontal scroll ---------- */
+
+#extra-container {
+    width: 100%;
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.extra-scroll {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    width: 100%;
+    height: 80dvh;
+    padding: 0 2rem;
+    scroll-behavior: smooth;
+    align-items: center;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+}
+
+/* Hide scrollbar completely */
+.extra-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.extra-image {
+    height: 65dvh;
+    width: auto;
+    flex-shrink: 0;
+    opacity: 0.85;
+    transition: opacity 0.3s ease;
+    cursor: default;
+}
+
+.extra-image:hover {
+    opacity: 1;
+}
+
+.extra-back-container {
+    height: 20dvh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-back-extra {
+    max-width: 100px;
+}
+
+/* ---------- Commission horizontal scroll ---------- */
+
+#commission-container {
+    width: 100%;
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.commission-scroll {
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    width: 100%;
+    height: 80dvh;
+    align-items: center;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.commission-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.commission-set {
+    display: flex;
+    gap: 4rem;
+    align-items: center;
+    flex-shrink: 0;
+    padding: 0 2rem;
+}
+
+.commission-group {
+    display: flex;
+    gap: 1rem;
+    flex-shrink: 0;
+}
+
+.commission-image {
+    height: 65dvh;
+    width: auto;
+    flex-shrink: 0;
+    opacity: 0.85;
+    transition: opacity 0.3s ease;
+    cursor: pointer;
+}
+
+.commission-image:hover {
+    opacity: 1;
+}
+
+.commission-home-container {
+    height: 20dvh;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 2rem;
+}
+
+.btn-home-commission {
+    max-width: 100px;
+}
+
+/* ---------- Bio images (horizontal scroll, bottom) ---------- */
+
+.bio-images-container {
+    position: fixed;
+    bottom: 2rem;
+    left: 0;
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0 0 0 80dvw;
+    z-index: 99;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.bio-images-container::-webkit-scrollbar {
+    display: none;
+}
+
+.bio-images {
+    display: inline-flex;
+    gap: 0.5rem;
+    align-items: center;
+    padding-right: 2.5dvw;
+}
+
+.bio-me-image {
+    width: auto;
+    max-height: 100px;
+    flex-shrink: 0;
+    cursor: pointer;
+    opacity: 0.85;
+    transition: opacity 0.3s ease;
+}
+
+.bio-me-image:hover {
+    opacity: 1;
+}
